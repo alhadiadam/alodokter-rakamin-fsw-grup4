@@ -89,6 +89,6 @@ test:
 #
 production:
   <<: *default
-  database: alodokter_rakamin_fsw_grup4_production
-  username: alodokter_rakamin_fsw_grup4
+  database: <%= ENV['DATABASE_URL'] %>
+  # username: alodokter_rakamin_fsw_grup4
 #  password: <%= ENV['LOGINAPI_DATABASE_PASSWORD'] %>
