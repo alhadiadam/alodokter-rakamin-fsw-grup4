@@ -1,5 +1,5 @@
 {
-  "name": "alodokter-rakamin-fsw-grup4",
+  "name": "loginapi",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
