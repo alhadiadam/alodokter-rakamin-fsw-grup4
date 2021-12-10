@@ -87,7 +87,7 @@ module Api
                 params.permit(:fullname, :email, :password, :address, :IdCardNumber, :BirthDate, :gender)
             end
             def update_params
-                params.permit(:user_id, :fullname, :email, :password, :address, :IdCardNumber, :BirthDate, :gender)
+                params.permit(:id, :fullname, :email, :password, :address, :IdCardNumber, :BirthDate, :gender)
             end
             
             # token hash secret
