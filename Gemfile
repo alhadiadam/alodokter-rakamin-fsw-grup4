@@ -27,6 +27,7 @@ gem 'pg_search', '~> 2.3', '>= 2.3.5'
 gem 'sendinblue'
 gem 'kaminari'
 gem 'cloudinary'
+gem 'figaro'
 
 
 # Use Active Storage variant

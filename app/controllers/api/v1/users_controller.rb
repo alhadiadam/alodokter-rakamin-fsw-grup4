@@ -40,19 +40,20 @@ module Api
             end
 
             def show
-                user = User.find_by_email(params[:email])
-  
+               if user = User.find_by_email(params[:email])
                 render :json => {
                     data: user,
                     status: 'success',
                     message: 'User Found',
                 }, status: :ok
             
-                rescue ActiveRecord::RecordNotFound => e
-                    render json: {
-                        status: 'error',
-                        message: 'User Not Found',
-                    }, status: :not_found
+                else 
+                render json: {
+                    status: 'error',
+                    message: 'User not Found',
+                },
+                status: :not_found
+                end
             end
 
             def update
