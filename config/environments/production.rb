@@ -78,18 +78,16 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'https://alodokter-rakamin-fsw-grup4.herokuapp.com/' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-
+  config.action_mailer.delivery_method = :sendmail
 
   # config/environments/development.rb
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => 'smtp.gmail.com',
+    :address => 'smtp-relay.sendinblue.com',
     :port => 587,
-    :domain => 'gmail.com',
-    # :user_name=> ENV["GMAIL_USERNAME"],
-    # :password=> ENV["GMAIL_PASSWORD"],
-    :user_name => Rails.application.credentials.dig(:google_smtp, :email),
-    :password => Rails.application.credentials.dig(:google_smtp, :password),
+    :domain => 'https://alodokter-rakamin-fsw-grup4.herokuapp.com/',
+    :user_name=> ENV["USERNAME"],
+    :password=> ENV["PASSWORD"],
     :authentication => :plain,
     :enable_starttls_auto => true 
   }
