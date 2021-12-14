@@ -61,12 +61,6 @@ ActiveRecord::Schema.define(version: 2021_12_12_084246) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "lists", force: :cascade do |t|
-    t.string "kategori"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "fullname"
     t.string "email"
