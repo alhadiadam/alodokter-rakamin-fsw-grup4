@@ -1,7 +1,9 @@
 module Api
     module V1
         class UsersController < ApplicationController
-
+            def new
+                
+              end
             # register a user
             def create
                 # check if the user already exists
@@ -16,13 +18,14 @@ module Api
                     user = User.new(user_params)
                     if user.save
                         # generate token for the user
-                        token = encode_token({user_id: user.id, fullname: user.fullname, email: user.email, address: user.address, IdCardNumber: user.IdCardNumber, BirthDate: user.BirthDate, gender: user.gender})
-                       # UserMailer.welcome_email(@user).deliver_now
+                        # token = encode_token({user_id: user.id, fullname: user.fullname, email: user.email, address: user.address, IdCardNumber: user.IdCardNumber, BirthDate: user.BirthDate, gender: user.gender})
+                        # UserMailer.send_welcome(user).deliver_now
+                        UserMailer.welcome_email(user).deliver_now
                         render json: {
                             status: 'success',
                             message: 'User created',
                             data: user,
-                            token: token,
+                            # token: token,
                         },
                         status: :created
                     else 
@@ -39,11 +42,16 @@ module Api
             def show
                 user = User.find_by_email(params[:email])
   
-                render :json => user, status: :ok
+                render :json => {
+                    data: user,
+                    status: 'success',
+                    message: 'User Found',
+                }, status: :ok
             
                 rescue ActiveRecord::RecordNotFound => e
                     render json: {
-                        message: e
+                        status: 'error',
+                        message: 'User Not Found',
                     }, status: :not_found
             end
 
@@ -51,12 +59,17 @@ module Api
                 # find the user in the DB using their email
                 user = User.find_by_email(params[:email])
                 user.update(update_params)
-                render :json => user, status: :ok
+                render :json =>{
+                    data: user,
+                    status: 'success',
+                    message: 'Profile Updated!'
+                }, status: :ok
 
                 rescue ActiveRecord::RecordNotFound => e
                     render json: {
-                        message: e
-                    }, status: :not_found
+                        status: 'error',
+                        message: 'Update Cancelled!'
+                    }, status: :unprocessable_entity
             end
 
             # login a user

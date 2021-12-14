@@ -2,6 +2,17 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :address => 'smtp-relay.sendinblue.com',
+  #   :port => 587,
+  #   :user_name => 'YOUR_SENDINBLUE_EMAIL',
+  #   :password => 'YOUR_SENDINBLUE_PASSWORD',
+  #   :authentication => 'login',
+  #   :enable_starttls_auto => true
+  # }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -13,8 +24,8 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+  # config.consider_all_requests_local       = false
+  # config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
@@ -38,7 +49,9 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :google
+  config.active_storage.service = :amazon
+  config.active_storage.service = :cloudinary
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -63,7 +76,23 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "loginapi_production"
 
   config.action_mailer.perform_caching = false
+  Rails.application.routes.default_url_options[:host] = 'https://alodokter-rakamin-fsw-grup4.herokuapp.com/'
+  config.action_mailer.default_url_options = { :host => 'https://alodokter-rakamin-fsw-grup4.herokuapp.com/' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 
+
+  # config/environments/development.rb
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :domain => 'https://alodokter-rakamin-fsw-grup4.herokuapp.com/',
+    :user_name => Rails.application.credentials.dig(:google_smtp, :email),
+    :password => Rails.application.credentials.dig(:google_smtp, :password),
+    :authentication => :plain,
+    :enable_starttls_auto => true 
+  }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

@@ -31,12 +31,12 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :cloudinary
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.perform_caching = false
+  # config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -75,19 +75,32 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # config/environments/development.rb
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'usermailer4@gmail.com'}
+config.action_mailer.delivery_method = :sendmail
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.default_url_options = {:host =>'localhost:3000'}
+Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  :address => 'smtp.gmail.com',
+  :port => 587,
+  :domain => 'gmail.com',
+  :user_name => 'alhadiadam13@gmail.com',
+  :password => 'urcisteracourirz',
+  :authentication => :plain,
+  :enable_starttls_auto => true 
+}
 
   # config/environments/development.rb
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
-  port:                 587,
-  domain:               'example.com',
-  user_name:            '<username>',
-  password:             '<password>',
-  authentication:       'plain',
-  enable_starttls_auto: true  }
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :address => 'smtp-relay.sendinblue.com',
+  #   :port => 587,
+  #   :user_name => 'YOUR_SENDINBLUE_EMAIL',
+  #   :password => 'YOUR_SENDINBLUE_PASSWORD',
+  #   :authentication => 'login',
+  #   :enable_starttls_auto => true
+  # }
 end

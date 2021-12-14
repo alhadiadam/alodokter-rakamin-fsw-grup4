@@ -24,6 +24,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'jwt'
 gem 'pg_search', '~> 2.3', '>= 2.3.5'
+gem 'sendinblue'
+gem 'kaminari'
+gem 'cloudinary'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

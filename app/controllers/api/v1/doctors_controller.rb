@@ -1,37 +1,40 @@
 module Api
     module V1
-        class ListsController < ApplicationController
+        class DoctorsController < ApplicationController
             # Authenticate all of our posts routes
             # before_action :authorize_request
             before_action :authorized, only: [:auto_login]
-
             
             # This method returns all the Posts in the database
             def index 
-                list = List.order('id ASC');
+                doctor = Doctor.order('id ASC').page(params[:page]).per(params[:per_page]);
                 render json: {
                     status: 'Success',
                     message: 'All Lists',
-                    data: list,
-                    },
+                    data: doctor,
+                    meta: {
+                        count: doctor.count,
+                        total: doctor.total_pages
+                    }
+                },
                     status: :ok
             end
 
-            # Create a new post
+            # Create a new doctor
             def create
-                list = List.new(list_params)
-                    if list.save
+                doctor = Doctor.new(doctor_params)
+                    if doctor.save
                         render json: {
                             status: 'Success',
-                            message: 'Lists saved',
-                            data: list,
+                            message: 'Doctor saved',
+                            data: doctor,
                             },
                             status: :created
                     else 
                         render json: {
                             status: 'Error',
                             message: 'List not saved',
-                            data: list.errors,
+                            data: doctor.errors,
                             },
                             status: :unprocessable_entity
                     end
@@ -39,11 +42,11 @@ module Api
 
             # Returns a single post associated with that id
             def show
-               list = List.find(params[:id])
+               doctor = Doctor.find(params[:id])
                 render json: {
                     status: 'Success',
                     message: 'Loaded List',
-                    data: list,
+                    data: doctor,
                     },
                     status: :ok
                 rescue ActiveRecord::RecordNotFound => e
@@ -54,39 +57,56 @@ module Api
 
             # Update a post associted with that id in the database
             def update
-                list = List.find(params[:id])
-                if list.update(list_params)
+                doctor = Doctor.find(params[:id])
+                if doctor.update(doctor_params)
                     render json: {
                         status: 'Success',
                         message: 'List updated',
-                        data: list
+                        data: doctor,
                         },
                         status: :ok
                 else 
                     render json: {
                         status: 'Success',
                         message: 'List not updated',
-                        data: list,
+                        data: doctor,
                         },
                         status: :unprocessable_entity
                 end
             end
 
-            # Delete a post from the database
-            def destroy
-                list = List.find(params[:id])
-                list.destroy
+            # Returns a single post associated with that id
+            def search
+                doctor = Doctor.where("fullname LIKE ? ", "%#{params[:fullname]}%")
                 render json: {
                     status: 'Success',
-                    message: 'List deleted',
-                    data: list,
+                    data: doctor,
+                    },
+                    status: :ok
+                rescue ActiveRecord::RecordNotFound => e
+                    render json: {
+                        message: e
+                    }, status: :not_found
+            end
+
+            # Delete a post from the database
+            def destroy
+                doctor = Doctor.find(params[:id])
+                doctor.destroy
+                render json: {
+                    status: 'Success',
+                    message: 'Doctor Deleted.',
+                    data: doctor,
                     },
                     status: :ok
             end
 
             private 
-            def list_params
-                params.permit(:id, :kategori)
+            def doctor_params
+                params.permit(:id, :fullname, :PracticeLocation, :specialist, :profile, :avatar)
+            end
+            def search_params
+                params.permit(:fullname)
             end
         end
     end
