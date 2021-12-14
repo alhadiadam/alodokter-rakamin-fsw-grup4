@@ -85,9 +85,11 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address => 'smtp.gmail.com',
     :port => 587,
-    :domain => 'https://alodokter-rakamin-fsw-grup4.herokuapp.com/',
-    :user_name=> ENV["GMAIL_USERNAME"],
-    :password=> ENV["GMAIL_PASSWORD"],
+    :domain => 'gmail.com',
+    # :user_name=> ENV["GMAIL_USERNAME"],
+    # :password=> ENV["GMAIL_PASSWORD"],
+    :user_name => Rails.application.credentials.dig(:google_smtp, :email),
+    :password => Rails.application.credentials.dig(:google_smtp, :password),
     :authentication => :plain,
     :enable_starttls_auto => true 
   }
