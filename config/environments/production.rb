@@ -74,19 +74,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "loginapi_production"
 
   config.action_mailer.perform_caching = false
-  Rails.application.routes.default_url_options[:host] = 'alodokter-rakamin-fsw-grup4.herokuapp.com'
-  config.action_mailer.default_url_options = { host: 'alodokter-rakamin-fsw-grup4.herokuapp.com', port: 587 }
+  Rails.application.routes.default_url_options[:host] = 'https://alodokter-rakamin-fsw-grup4.herokuapp.com'
+  config.action_mailer.default_url_options = { host: 'https://alodokter-rakamin-fsw-grup4.herokuapp.com', port: 587 }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   # config.action_mailer.delivery_method = :sendmail
 
   # config/environments/development.rb
-  
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address => 'smtp-relay.sendinblue.com',
     :port => 587,
-    :domain => 'alodokter-rakamin-fsw-grup4.herokuapp.com',
+    :domain => 'https://alodokter-rakamin-fsw-grup4.herokuapp.com',
     :user_name=> ENV["USERNAME"],
     :password=> ENV["PASSWORD"],
     :authentication => 'login',
