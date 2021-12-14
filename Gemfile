@@ -28,6 +28,7 @@ gem 'sendinblue'
 gem 'kaminari'
 gem 'cloudinary'
 gem 'figaro'
+gem 'sib-api-v3-sdk'
 
 
 # Use Active Storage variant

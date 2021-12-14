@@ -1,1 +1,1 @@
-Figaro.require_keys('USERNAME', 'PASSWORD') 
+Figaro.require_keys('USERNAME', 'PASSWORD','API_KEY') 
