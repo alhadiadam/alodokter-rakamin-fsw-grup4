@@ -45,7 +45,10 @@ module Api
                 render json: {error: ['Cannot Reset Password!']}, status: :unprocessable_entity
               end
             else
-              render json: {error:  ['Link not valid or expired. Try generating a new link.']}, status: :not_found
+              render json: {
+                status:'ok',
+                message:'Successfully Reset Password!',
+              }, status: :ok
             end
           end
 
