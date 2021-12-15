@@ -29,7 +29,7 @@ gem 'kaminari'
 gem 'cloudinary'
 gem 'figaro'
 gem 'sib-api-v3-sdk'
-
+gem 'addressable'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
