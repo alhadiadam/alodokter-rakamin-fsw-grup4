@@ -9,7 +9,7 @@ module Api
                 # check if the user already exists
                 if User.exists?(email: params[:email])
                     render json: {
-                        status: 'warning',
+                        status: 'Error',
                         message: 'User already exists',
                     },
                     status: :unprocessable_entity
