@@ -74,8 +74,8 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "loginapi_production"
 
   config.action_mailer.perform_caching = false
-  Rails.application.routes.default_url_options[:host] = 'https://fsw-api-grup4.herokuapp.com/'
-  config.action_mailer.default_url_options = { :host => 'https://fsw-api-grup4.herokuapp.com/', port: 587 }
+  # Rails.application.routes.default_url_options[:host] = 'fsw-api-grup4.herokuapp.com'
+  config.action_mailer.default_url_options = { :host => 'fsw-api-grup4.herokuapp.com', protocol: 'https' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   # config.action_mailer.delivery_method = :sendmail
@@ -83,12 +83,13 @@ Rails.application.configure do
   # config/environments/development.rb
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => 'smtp-relay.sendinblue.com',
+    :address => 'smtp.gmail.com',
     :port => 587,
-    # :domain => 'https://fsw-api-grup4.herokuapp.com/',
-    :user_name=> ENV["USERNAME"],
-    :password=> ENV["PASSWORD"],
-    :authentication => 'login',
+    :user_name => Rails.application.credentials.dig(:google_smtp, :email),
+    :password => Rails.application.credentials.dig(:google_smtp, :password),
+    # :user_name=> ENV["USERNAME"],
+    # :password=> ENV["PASSWORD"],
+    :authentication => :plain,
     :enable_starttls_auto => true 
   }
   # Ignore bad email addresses and do not raise email delivery errors.
