@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get '/show', to: "users#show"
       put '/update', to: "users#update"
       post 'passwords/forgot', to: 'passwords#forgot'
-      put 'passwords/reset', to: 'passwords#reset'
+      patch 'passwords/reset', to: 'passwords#reset'
       get 'passwords/reset', to: 'passwords#reset_edit'
       get 'doctors/search', to: "doctors#search"
       get 'articles/search', to:"articles#search"
