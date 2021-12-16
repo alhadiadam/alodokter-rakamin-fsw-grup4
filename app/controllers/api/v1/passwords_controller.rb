@@ -33,7 +33,9 @@ module Api
         
           def reset
             token = params[:token].to_s
-    
+            # if params[:email].blank?
+            #   return render json: {error: 'Token not present'}
+            # end
             user = User.find_by(password_reset_token: token)
           
             if user.present? && user.password_token_valid?
@@ -43,13 +45,15 @@ module Api
                   message:'Successfully Reset Password!'
                   }, status: :ok
               else
-                render json: {error: ['Cannot Reset Password!']}, status: :unprocessable_entity
+                render json: {status:'error',
+                  message: 'Cannot Reset Password!'
+                  }, status: :unprocessable_entity
               end
             else
               render json: {
-                status:'ok',
-                message:'Successfully Reset Password!',
-              }, status: :ok
+                status:'error',
+                message:'Generate new link for reset password!',
+              }, status: :unprocessable_entity
             end
           end
 
