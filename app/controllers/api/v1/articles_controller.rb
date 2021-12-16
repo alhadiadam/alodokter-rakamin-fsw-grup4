@@ -12,7 +12,7 @@ module Api
                     data: article,
                     meta: {
                         count: article.count,
-                        total_page: article.total_pages
+                        total: article.total_pages
                     }
                 },
                     status: :ok
