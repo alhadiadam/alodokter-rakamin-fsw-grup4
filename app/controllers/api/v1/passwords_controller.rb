@@ -34,23 +34,34 @@ module Api
           def reset
             token = params[:token].to_s
     
-           user = User.find_by(password_reset_token: token)
-            if user.present? && user.password_token_valid?
-              if user.password_reset!(params[:password])
-                render json: {
-                  status: 'ok',
-                  message:'Successfully Reset Password!'
-                  }, status: :ok
-              else
-                render json: {error: ['Cannot Reset Password!']}, status: :unprocessable_entity
-              end
-            else
-              render json: {
-                status:'ok',
-                message:'Successfully Reset Password!',
-              }, status: :ok
-            end
+           @user = User.find_by(password_reset_token: token)
+           if @user.reset(password_params)
+            notice: 'Your password was reset successfully. Please sign in'
+            
+          else
+            notice: 'Cannot Reset Password!. Please request another email'
+           end
+            # if user.present? && user.password_token_valid?
+            #   if user.password_reset!(params[:password])
+            #     render json: {
+            #       status: 'ok',
+            #       message:'Successfully Reset Password!'
+            #       }, status: :ok
+            #   else
+            #     render json: {error: ['Cannot Reset Password!']}, status: :unprocessable_entity
+            #   end
+            # else
+            #   render json: {
+            #     status:'ok',
+            #     message:'Successfully Reset Password!',
+            #   }, status: :ok
+            # end
           end
+
+          private
+            def password_params
+              params.require(:user).permit(:password, :password_confirmation)
+            end
 
       end
   end
