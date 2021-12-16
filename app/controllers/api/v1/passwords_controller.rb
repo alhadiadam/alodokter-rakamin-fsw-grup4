@@ -35,7 +35,7 @@ module Api
             token = params[:token].to_s
     
            @user = User.find_by(password_reset_token: token)
-           if @user.reset(password_params)
+           if @user.update(password_params)
             render json: {
                     status: 'ok',
                     message:'Successfully Reset Password!'
