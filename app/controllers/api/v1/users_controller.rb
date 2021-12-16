@@ -84,6 +84,7 @@ module Api
                     render json: {
                         status: 'success',
                         message: 'Login successful',
+                        data: user,
                         token: token,
                     },
                     status: :ok

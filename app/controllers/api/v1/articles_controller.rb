@@ -1,9 +1,7 @@
 module Api
     module V1
         class ArticlesController < ApplicationController
-            # Authenticate all of our posts routes
-            # before_action :authorize_request
-            before_action :authorized, only: [:auto_login]
+            
             
             # This method returns all the Posts in the database
             def index 
