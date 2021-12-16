@@ -34,7 +34,7 @@ module Api
           def reset
             token = params[:token].to_s
     
-           @user = User.find_by(password_reset_token: token)
+           user = User.find_by(password_reset_token: token)
            if user.password_reset!(params[:password])
             render json: {
                     status: 'ok',
