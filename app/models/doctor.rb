@@ -9,6 +9,6 @@ class Doctor < ApplicationRecord
     def avatar_url
         Rails.application.routes.url_helpers.rails_blob_url(
         avatar.blob, only_path: true)
-        return avatar.service_url
+        
     end   
 end
