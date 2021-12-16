@@ -36,11 +36,13 @@ module Api
     
            @user = User.find_by(password_reset_token: token)
            if @user.reset(password_params)
-            notice: 'Your password was reset successfully. Please sign in'
-            
-          else
-            notice: 'Cannot Reset Password!. Please request another email'
-           end
+            render json: {
+                    status: 'ok',
+                    message:'Successfully Reset Password!'
+                    }, status: :ok
+            else
+              render json: {error: ['Cannot Reset Password!']}, status: :unprocessable_entity
+            end
             # if user.present? && user.password_token_valid?
             #   if user.password_reset!(params[:password])
             #     render json: {
