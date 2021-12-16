@@ -37,7 +37,7 @@ module Api
            user = User.find_by(password_reset_token: token)
           
             if user.present? && user.password_token_valid?
-              if user.password_reset!(password_params)
+              if user.password_reset!(params[:password])
                 render json: {
                   status: 'ok',
                   message:'Successfully Reset Password!'
@@ -52,11 +52,6 @@ module Api
               }, status: :ok
             end
           end
-
-          private
-            def password_params
-              params.require(:user).permit(:password, :password_confirmation)
-            end
 
       end
   end
