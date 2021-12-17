@@ -3,13 +3,13 @@ class UserMailer < ApplicationMailer
 
       def welcome_email(user)
         @user = user
-        @greeting = "Hi"
-        mail(to: @user.email, subject: 'Welcome to HiDoctor!')
+        @greeting = "Hi!"
+        mail(to: @user.email, subject: 'Welcome to Hi!Dokter')
       end
 
       def password_reset(user)
         @user = user
-        @greeting = "Hi"
+        @greeting = "Hi!"
         mail(to: @user.email, subject: 'Reset password instruction')
       end
 

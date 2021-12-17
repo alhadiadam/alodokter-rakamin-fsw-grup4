@@ -1,6 +1,6 @@
 <h1>Reset Password</h1>
-
-<%= form_for @user, :url => api_v1_passwords_reset_path(params[:password]) do |f| %>
+<%= csrf_meta_tag %>
+<%= form_for @user, url: api_v1_passwords_reset_path(params[:password],@token), method: :patch do |f| %>
   <% if @user.errors.any? %>
     <div class='error_messages'>
       <h2>Form is invalid</h2>
@@ -11,8 +11,7 @@
       </ul>
     </div>
   <% end %>
-
- <div class='form'>
+<div class='form'>
   <div class='field'>
     <%= f.label :email %>
   </div>
@@ -31,6 +30,6 @@
     <div class='field'>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class='actions'><%= f.button 'Reset Password' %></div>
+  <div class='actions'><%= f.submit 'Reset' %></div>
 </div>
 <% end %>

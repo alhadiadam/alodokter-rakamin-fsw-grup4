@@ -87,8 +87,8 @@ config.action_mailer.smtp_settings = {
   # :domain => 'gmail.com',
   # :user_name => Rails.application.credentials.dig(:google_smtp, :email),
   # :password => Rails.application.credentials.dig(:google_smtp, :password),
-  :user_name=> ENV["USERNAME"],
-  :password=> ENV["PASSWORD"],
+  :user_name=> 'alhadiadam13@gmail.com',
+  :password=> 'jkrNyWRqUYTwPExt',
   :authentication => :plain,
   :enable_starttls_auto => true 
 }
