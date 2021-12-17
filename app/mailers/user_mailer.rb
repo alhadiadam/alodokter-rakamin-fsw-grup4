@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
       def welcome_email(user)
         @user = user
         @greeting = "Hi"
-        mail(to: @user.email, subject: 'Welcome to Alodokter!')
+        mail(to: @user.email, subject: 'Welcome to HiDoctor!')
       end
 
       def password_reset(user)
