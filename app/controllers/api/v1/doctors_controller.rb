@@ -77,7 +77,7 @@ module Api
 
             # Returns a single post associated with that id
             def search
-                doctor = Doctor.where("fullname LIKE ? ", "%#{params[:fullname]}%")
+                doctor = Doctor.where("fullname ILIKE ? ", "%#{params[:fullname]}%")
                 render json: {
                     status: 'Success',
                     data: doctor,

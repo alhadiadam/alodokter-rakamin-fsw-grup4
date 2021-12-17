@@ -1,6 +1,6 @@
 class Doctor < ApplicationRecord
 
-    validates :fullname, presence: true
+    validates :fullname, presence: true, uniqueness: {case_sensitive: false}
     validates :PracticeLocation, presence: true
     validates :specialist, presence: true
     validates :profile, presence: true

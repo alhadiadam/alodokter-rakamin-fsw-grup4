@@ -75,7 +75,7 @@ module Api
 
             # Returns a single post associated with that id
             def search
-                article = Article.where("title LIKE ? ", "%#{params[:title]}%")
+                article = Article.where("title ILIKE ? ", "%#{params[:title]}%")
                 render json: {
                     status: 'Searching Success',
                     message: 'Results (if empty = not found)',

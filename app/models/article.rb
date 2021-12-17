@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-    validates :title, presence: true
+    validates :title, presence: true, uniqueness: {case_sensitive: false}
     validates :body, presence: true
     
     has_one_attached :media
