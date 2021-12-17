@@ -1,35 +1,8 @@
-<h1>Reset Password</h1>
 <%= csrf_meta_tag %>
 <%= form_for @user, url: api_v1_passwords_reset_path(params[:password],@token), method: :patch do |f| %>
-  <% if @user.errors.any? %>
-    <div class='error_messages'>
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 <div class='form'>
   <div class='field'>
-    <%= f.label :email %>
+    <label> Harap install Aplikasi Hi!Dokter untuk membuka link reset password </label>
   </div>
-  <div class='field'>
-    <%= f.text_field :email %>
-  </div>
-  <div class='field'>
-    <%= f.label :password %>
-  </div>
-    <div class='field'>
-    <%= f.password_field :password %>
-  </div>
-  <div class='field'>
-    <%= f.label :password_confirmation %>
-  </div>
-    <div class='field'>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class='actions'><%= f.submit 'Reset' %></div>
 </div>
 <% end %>
