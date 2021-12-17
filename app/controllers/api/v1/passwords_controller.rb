@@ -66,7 +66,6 @@ module Api
           #     flash[:danger] = "Your Password reset link has been expired!"
           #   end
           # end
-      end
 
       end
   end
