@@ -36,36 +36,36 @@ module Api
             # if params[:email].blank?
             #   return render json: {error: 'Token not present'}
             # end
-            # @user = User.find_by(password_reset_token: @token)
+            @user = User.find_by(password_reset_token: @token)
           
-          #   if @user.present? && @user.password_token_valid?
-          #     if @user.password_reset!(params[:password])
-          #       render json: {
-          #         status: 'ok',
-          #         message:'Successfully Reset Password!'
-          #         }, status: :ok
-          #     else
-          #       render json: {status:'error',
-          #         message: 'Cannot Reset Password!'
-          #         }, status: :unprocessable_entity
-          #     end
-          #   else
-          #     render json: {
-          #       status:'error',
-          #       message:'Generate new link for reset password!',
-          #     }, status: :unprocessable_entity
-          #   end
-          # end
-          @user = User.new(params[:password])
-          # @user = User.find_by(password_reset_token: @token)
-          if @user.present? && @user.password_token_valid?
-             @user =User.find_by(password_reset_token: @token)
-            if @user.update_attributes(params[:password])
-              flash[:success] = "Your Password has been successfully reset!"
-            else 
-              flash[:danger] = "Your Password reset link has been expired!"
+            if @user.present? && @user.password_token_valid?
+              if @user.password_reset!(params[:password])
+                render json: {
+                  status: 'ok',
+                  message:'Successfully Reset Password!'
+                  }, status: :ok
+              else
+                render json: {status:'error',
+                  message: 'Cannot Reset Password!'
+                  }, status: :unprocessable_entity
+              end
+            else
+              render json: {
+                status:'error',
+                message:'Generate new link for reset password!',
+              }, status: :unprocessable_entity
             end
           end
+          # @user = User.new(params[:password])
+          # # @user = User.find_by(password_reset_token: @token)
+          # if @user.present? && @user.password_token_valid?
+          #    @user =User.find_by(password_reset_token: @token)
+          #   if @user.update_attributes(params[:password])
+          #     flash[:success] = "Your Password has been successfully reset!"
+          #   else 
+          #     flash[:danger] = "Your Password reset link has been expired!"
+          #   end
+          # end
       end
 
       end
