@@ -19,3 +19,5 @@ For the endpoint of each URL you can visit the Postman API Documentation Hi!Doct
 > https://www.postman.com/bold-meadow-219848/workspace/alodokter-api-documentation/collection/18514905-22e747d4-6935-4b2f-97a2-890f615ca076
 
 
+## Link Presentasi Project
+> https://docs.google.com/presentation/d/1_Eg4m9P6ziE8RcIZ410_WE8yVXMBnEPzWdJ_JEuFFRA/edit?usp=sharing
