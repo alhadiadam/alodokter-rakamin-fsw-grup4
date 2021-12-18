@@ -5,6 +5,12 @@ This API contains Create Users, Login, Update Profile, Reset Password.
 and on the other hand it also contains. 
 Create Article, List Article, Search Article, Show Detail Article and List Doctor, Search Doctor
 
+This repository has also been deployed on heroku you can visit it at
+> https://fsw-api-grup4.herokuapp.com/api/v1/
+
+For the endpoint of each URL you can visit the Postman API Documentation Hi!Doctor at the following link
+> https://www.postman.com/bold-meadow-219848/workspace/alodokter-api-documentation/collection/18514905-22e747d4-6935-4b2f-97a2-890f615ca076
+
 
 ## Getting Started
 
